@@ -28,6 +28,7 @@ export const useFetch = (country, category, pageSize, apikey,setProgress) => {
      setError(error.message)
      setLoading(false)
      setProgress(100)
+     console.log(error)
       }
     };
     document.title = `${capitalize(category)} - News4u`

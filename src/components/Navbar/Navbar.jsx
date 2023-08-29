@@ -27,7 +27,7 @@ function Navbar() {
             className="w-[50px]  drop-shadow-3xl rounded-full"
           />
           <h1 className="text-white ml-2 font-[600] text-[24px] ">News4u</h1> 
-          <button className="download_app">Download</button>
+          
         </div>
         <div>
           {/* menu - navlinks */}
