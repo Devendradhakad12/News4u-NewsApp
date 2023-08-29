@@ -1,51 +1,41 @@
-import React from "react";
- 
-function News() {
- 
+import { useFetch } from "../hook/useFetch";
+import NewsCard from "../components/newsCard/NewsCard";
+import Spinner from "../components/spiner/Spinner";
+import InfiniteScroll from "react-infinite-scroll-component";
+import axios from "axios";
+import React, { useState, useEffect } from "react";
+
+function News({ apiKey, pageSize, category, country, setProgress }) {
+  const { articles, loading, totalResults, error, setPage, page, reFetch } =
+    useFetch(country, category, pageSize, apiKey,setProgress);
 
   return (
-    <div className="flex flex-wrap justify-center gap-10 p-9 bg-slate-900 w-[100%] h-[100%]">
-      <div className=" bg-slate-300 h-[500px] w-[400px] rounded-xl">
-        <div>
-          <img
-            src="https://www.pinkvilla.com/images/2023-08/289736076_samantha-in-anita-dongre-outfit-1.jpg"
-            alt=""
-            className=" rounded-t-xl"
-          />
-        </div>
-
-        <div className="px-5 py-2">
-          <h2 className="text-[20px] font-[600]">
-            Bigg Boss 7 Telugu – Popular adult star............ {""}
-            <a href="" className=" bg-amber-800 text-[15px] px-3 py-1 rounded-md text-white font-[400]">
-              Visit website
-            </a>
-          </h2>
-        </div>
-
-        <div className="px-5">
-          <p>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Esse
-            labore atque nam quis, ab quae vel laborum distinctio natus quam!
-          </p>
-        </div>
-
-        <div className="px-5 pt-5">
-          <p>
-            <span className=" font-[600]"> Date :</span> Sun 27 2023
-          </p>
-        </div>
-
-        <div className="px-5 py-5">
-          <a
-            href=""
-            className=" float-right bg-blue-800 text-[15px] px-3 py-1 rounded-sm text-white font-[400]"
-          >
-            Read More
-          </a>
+    <>
+      <div>
+        <div className="flex flex-wrap justify-center bg-slate-900 w-[100%] h-[100%]">
+          <h1 className="text-white text-[24px] capitalize py-5">
+            {category} - News4u
+          </h1>
+          {loading && <Spinner />}
         </div>
       </div>
-    </div>
+      <InfiniteScroll
+        dataLength={articles.length}
+        next={reFetch}
+        hasMore={articles.length !== totalResults}
+        loader={loading && <Spinner />}
+      >
+        <div className="flex flex-wrap gap-4 justify-center bg-slate-900 w-[100%] h-[100%]">
+          {articles.map((ar) => {
+            return (
+              <div className="m-4 flex" key={ar.url}>
+                <NewsCard ar={ar} />
+              </div>
+            );
+          })}
+        </div>
+      </InfiniteScroll>
+    </>
   );
 }
 

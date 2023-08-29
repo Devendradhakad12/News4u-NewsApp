@@ -1,27 +1,33 @@
 import close from "../assets/close.svg";
 import menu from "../assets/menu.svg";
+import logo from "../assets/Dark Blue Red White Generic News General News Logo (1)-fotor-20230829174657.png"
  
-export {close,menu}
+export {close,menu,logo}
 export let navLinks = [
+    
     {
-      id: "about",
-      title: "About",
+      id: "entertainment",
+      title: "Entertainment",
     },
     {
-      id: "experience",
-      title: "Experience",
+      id: "business",
+      title: "Business",
     },
     {
-      id: "skills",
-      title: "Skills",
-    },
-    {
-      id: "projects",
-      title: "Projects",
+      id: "health",
+      title: "Health",
     },
    
     {
-      id: "contact",
-      title: "Contact",
+      id: "science",
+      title: "Science",
+    },
+    {
+      id: "sports",
+      title: "Sports",
+    },
+    {
+      id: "technology",
+      title: "Technology",
     },
   ];

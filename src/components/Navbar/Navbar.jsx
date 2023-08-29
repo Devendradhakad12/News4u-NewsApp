@@ -1,27 +1,56 @@
 import React, { useState } from "react";
-import { navLinks, menu, close } from "../../constants/index.js";
+import { navLinks, menu, close,logo } from "../../constants/index.js";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom"; 
+import { Link } from "react-router-dom";
+ 
 
 function Navbar() {
- 
   const [toggle, setToggle] = useState(false);
+
+ 
+ 
+ 
+
+
+
+
+
+
   return (
     <>
       <nav className=" w-full bg-yellow-700  sm:h-[70px] h-[70px] flex sm:justify-between sm:px-20 px-8 items-center sticky top-0 z-[10]">
         {/* logo */}
-        <div>
-           <img src="" alt="logo" className="sm:w-[70px] w-[50px]  drop-shadow-3xl" />
-         
+        <div className="flex justify-center items-center">
+          <img
+            src={logo}
+            alt="logo"
+            className="w-[50px]  drop-shadow-3xl rounded-full"
+          />
+          <h1 className="text-white ml-2 font-[600] text-[24px] ">News4u</h1> 
+          <button className="download_app">Download</button>
         </div>
         <div>
           {/* menu - navlinks */}
           <ul className="sm:flex hidden ">
+            <li
+              className="mx-5 text-[20px] text-white"
+              onClick={() => {
+                setToggle(!toggle);
+              }}
+            >
+              <Link
+                to="/"
+                className=" hover:text-gray-300"
+                onClick={() => {
+                  setToggle(!toggle);
+                }}
+              >
+                General
+              </Link>
+            </li>
             {navLinks.map((link) => (
               <li key={link.id} className=" mx-5 text-[20px] text-white">
-                <Link
-                 className="hover:text-gray-300"
-                >
+                <Link to={`/${link.id}`} className="hover:text-gray-300">
                   {link.title}
                 </Link>
               </li>
@@ -45,7 +74,23 @@ function Navbar() {
               whileInView={{ x: 0, opacity: 1 }}
               viewport={{ once: false }}
             >
-              <ul className="flex flex-col bg-yellow-500 py-10 pr-10 pl-5 text-black rounded-xl">
+              <ul className="flex flex-col bg-yellow-700 py-10 pr-10 pl-5 text-white rounded-xl">
+                <li
+                  className=" mx-3 text-lg leading-9"
+                  onClick={() => {
+                    setToggle(!toggle);
+                  }}
+                >
+                  <Link
+                    to="/"
+                    className=" cursor-pointer hover:text-green-950 text-[23px]"
+                    onClick={() => {
+                      setToggle(!toggle);
+                    }}
+                  >
+                    General
+                  </Link>
+                </li>
                 {navLinks.map((link) => (
                   <li
                     key={link.id}
@@ -55,7 +100,7 @@ function Navbar() {
                     }}
                   >
                     <Link
-                     
+                      to={`/${link.id}`}
                       className=" cursor-pointer hover:text-green-950 text-[23px]"
                       onClick={() => {
                         setToggle(!toggle);
@@ -69,10 +114,11 @@ function Navbar() {
             </motion.div>
           </div>
         </div>
+     
       </nav>
+     
     </>
   );
 }
 
 export default Navbar;
-
